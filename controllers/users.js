@@ -26,8 +26,9 @@ const createUsers = async (req, res) => {
 
 const updateUsers = async (req, res) => {
     const { id } = req.body;
+    console.log(id);
     // buscar por id
-    let user = await User.findOne({ id });
+    let user = await User.findOne({ _id: id });
     console.log(user);
 
     await user.update(req.body);
@@ -40,13 +41,15 @@ const updateUsers = async (req, res) => {
 
 const deleteUsers = async (req, res) => {
     const { id } = req.body;
+    console.log(id);
     // buscar por id
-    let user = await User.findOne({ id });
+    let user = await User.findOne({ _id: id });
     console.log(user);
 
     await user.delete(user);
     return res.status(201).json({
-        ok: true
+        ok: true,
+        user
     })
 };
 
